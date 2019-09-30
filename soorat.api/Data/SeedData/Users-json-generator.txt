@@ -1,0 +1,19 @@
+
+[
+  {
+    'repeat(5)': {
+    Username: '+98 {{phone()}}',
+    Name: '{{firstName()}}',
+    Family: '{{surname()}}',
+    CodeMeli: {{integer(1000000001, 9999999999)}}',
+    Jensiyat: '{{random("مونث", "مذکر")}}',
+    DateOfBirth: '{{date(new Date(1300,0,1), new Date(1450, 11, 31), "YYYY-MM-dd")}}',
+    Password: 'password',
+    Tel: '{{phone()}}',
+    Address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    LastActive: function(){return this.Created; },
+    Active: true,
+    ShahrId: '{{integer(1, 80)}}'
+  }
+ } 
+]
