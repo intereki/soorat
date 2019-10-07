@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        بازار
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          لیست بازارها
+        </ion-card-title>
+      </ion-card-header>  
+      <ion-card-content>
+        <ion-button shape="round" fill="outline" color="success" href="bazar/new">
+          <ion-ripple-effect></ion-ripple-effect>
+            <ion-icon slot="start" name="person-add"></ion-icon>
+            بازار جدید
+        </ion-button>   
+        <ion-list>    
+          <ion-list-header>
+            <ion-label>نام</ion-label>
+            <ion-label>آدرس</ion-label>
+            <ion-label></ion-label>
+          </ion-list-header>
+  
+          <ion-item *ngFor="let bazar of bazars">
+            <ion-label>{{bazar.name}}</ion-label>          
+            <ion-label>{{bazar.address}}</ion-label>          
+            <ion-button [routerLink]="['/bazar/', bazar.bazarId]" shape="round" fill="outline" color="primary"><ion-icon slot="icon-only" name="create"></ion-icon></ion-button>
+            <ion-button (click)="deleteActionSheet(bazar.bazarId)" shape="round" fill="outline" color="danger"><ion-icon slot="icon-only" name="trash"></ion-icon></ion-button>
+          </ion-item>
+  
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

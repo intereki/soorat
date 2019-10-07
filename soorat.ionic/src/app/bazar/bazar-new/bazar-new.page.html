@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      بازار جدید
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-back-button defaultHref="/bazar" icon="arrow-round-forward">
+          <ion-ripple-effect></ion-ripple-effect>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addBazarForm" (ngSubmit)="addBazar()">
+      <ion-item>
+          <ion-label color="medium" position="fixed">نام</ion-label>
+          <ion-input formControlName="name" autocomplete="on" autofocus="on"></ion-input> 
+          <div *ngIf="!addBazarForm.controls.name.valid && addBazarForm.controls.name.dirty" class="error-text">نام را وارد نمایید</div>    
+      </ion-item>
+      <ion-item>
+          <ion-label color="medium" position="fixed">آدرس</ion-label>
+          <ion-input formControlName="address"></ion-input>
+          <div *ngIf="!addBazarForm.controls.address.valid && addBazarForm.controls.address.dirty" class="error-text">نام خانوادگی را وارد نمایید</div>    
+      </ion-item>
+      <ion-button shape="round" fill="outline" expand="block" color="success" type="submit" [disabled]="!addBazarForm.valid">
+          <ion-ripple-effect></ion-ripple-effect>
+          <ion-icon slot="start" name="save"></ion-icon>
+          بازار جدید
+      </ion-button>  
+  </form>
+
+</ion-content>

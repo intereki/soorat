@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      مشخصات بازار
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-back-button defaultHref="/personel/personel-list" icon="arrow-round-forward">
+          <ion-ripple-effect></ion-ripple-effect>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #editForm="ngForm" (ngSubmit)="addBazar()">
+      <ion-item>
+          <ion-label color="medium" position="fixed">نام</ion-label>
+          <ion-input [(ngModel)]="bazar.name" name="bazar.name" autocomplete="on" autofocus="on"></ion-input> 
+          <!-- <div *ngIf="!addBazarForm.controls.name.valid && addBazarForm.controls.name.dirty" class="error-text">نام را وارد نمایید</div>     -->
+      </ion-item>
+      <ion-item>
+          <ion-label color="medium" position="fixed">آدرس</ion-label>
+          <ion-input [(ngModel)]="bazar.address" name="bazar.address"></ion-input>
+          <!-- <div *ngIf="!addBazarForm.controls.address.valid && addBazarForm.controls.address.dirty" class="error-text">آدرس بازار را وارد نمایید</div>     -->
+      </ion-item>
+      <ion-button shape="round" fill="outline" expand="block" color="success" type="submit">
+          <ion-ripple-effect></ion-ripple-effect>
+          <ion-icon slot="start" name="save"></ion-icon>
+          ذخیره
+      </ion-button>  
+  </form>
+
+</ion-content>

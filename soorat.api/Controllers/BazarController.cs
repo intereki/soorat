@@ -10,6 +10,7 @@ using soorat.api.Models;
 
 namespace soorat.api.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
 
