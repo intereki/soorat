@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using soorat.api.Data.Dtos.Bazar;
 using soorat.api.Data.Interfaces;
+using soorat.api.Helpers;
 using soorat.api.Models;
 
 namespace soorat.api.Controllers
@@ -25,11 +26,14 @@ namespace soorat.api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery]UserParams userParams)
         {
-            var bazars = await _repo.GetAll();
+            var bazars = await _repo.GetAll(userParams);
 
             var bazarsToReturn = _mapper.Map<IEnumerable<Bazar>>(bazars);
+
+            Response.AddPagination(bazars.CurrentPage, bazars.PageSize,
+                bazars.TotalCount, bazars.TotalPage);
 
             return Ok(bazarsToReturn);
         }
@@ -79,7 +83,11 @@ namespace soorat.api.Controllers
             _repo.Delete(bazarFromRepo);
 
             if (await _repo.SaveAllAsync())
-                return NoContent();
+            {
+                // var bazars = await _repo.GetAll();
+                // var bazarsToReturn = _mapper.Map<IEnumerable<Bazar>>(bazars);
+                // return Ok(bazarsToReturn);
+            }
             
             throw new Exception($"حذف {id} با مشکل مواجه شد");
         }

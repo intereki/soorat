@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using soorat.api.Data.Interfaces.Base;
+using soorat.api.Helpers;
 
 namespace soorat.api.Data.Repositories.Base
 {
@@ -30,11 +31,11 @@ namespace soorat.api.Data.Repositories.Base
 
             return value;
         }
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<PageList<T>> GetAll(UserParams userParams)
         {
-            var values = await _context.Set<T>().ToListAsync();
+            var values =  _context.Set<T>();
 
-            return values;
+            return await PageList<T>.CreateAsync(values, userParams.PageNumber, userParams.PageSize);
         }
         public async Task<bool> SaveAllAsync()
         {
