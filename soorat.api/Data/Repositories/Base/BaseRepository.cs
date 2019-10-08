@@ -31,11 +31,11 @@ namespace soorat.api.Data.Repositories.Base
 
             return value;
         }
-        public async Task<PageList<T>> GetAll(UserParams userParams)
+        public async Task<PagedList<T>> GetAll(UserParams userParams)
         {
             var values =  _context.Set<T>();
 
-            return await PageList<T>.CreateAsync(values, userParams.PageNumber, userParams.PageSize);
+            return await PagedList<T>.CreateAsync(values, userParams.PageNumber, userParams.PageSize);
         }
         public async Task<bool> SaveAllAsync()
         {
